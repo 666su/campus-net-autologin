@@ -1,0 +1,11 @@
+# 只想用 cron 兜底（不装 systemd）时：
+#
+#   crontab -e
+#
+# 每 2 分钟检查一次，掉线就重登；已在跑守护进程时 ensure 会自动跳过。
+# 把 /path/to/repo 换成你的实际路径。
+
+*/2 * * * * cd /path/to/repo && /usr/bin/python3 campus_net.py fix >/dev/null 2>&1
+
+# 想用常驻进程 + 自动重启（更省事）：
+#   @reboot cd /path/to/repo && /usr/bin/python3 campus_net.py watch >/dev/null 2>&1

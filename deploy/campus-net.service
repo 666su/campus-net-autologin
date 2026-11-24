@@ -1,0 +1,19 @@
+[Unit]
+Description=Campus network auto re-login (SRun portal)
+Documentation=https://github.com/your-name/campus-net-autologin
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__REPO__
+ExecStart=/usr/bin/env python3 __REPO__/campus_net.py watch
+Restart=always
+RestartSec=10
+Nice=10
+# 断网时不会写爆 journald
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

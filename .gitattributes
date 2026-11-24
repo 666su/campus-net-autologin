@@ -1,0 +1,7 @@
+# 统一换行符，避免 Windows 上提交后把 CRLF 带进仓库
+* text=auto eol=lf
+
+# 批处理 / VBS 必须是 CRLF，否则 cmd.exe 可能解析异常
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.vbs text eol=crlf

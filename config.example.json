@@ -1,0 +1,46 @@
+{
+  "_help": "把本文件复制成 config.json 再填自己的信息：cp config.example.json config.json；或者直接运行 python campus_net.py init 交互式生成。config.json 已被 .gitignore 忽略，不会进仓库。",
+
+  "portal": {
+    "_help": "校园网认证门户。浏览器打开登录页，地址栏里那个 IP/域名就填这里（例如 192.168.1.1）。ac_id 留空会自动探测，一般不用改。",
+    "host": "192.168.1.1",
+    "scheme": "http",
+    "ac_id": "",
+    "auto_detect": true
+  },
+
+  "account": {
+    "_help": "账号密码都是明文填写（SRun 认证本身要用明文参与 HMAC 计算，无法避免）。operator 可填 telecom（电信）/ mobile（移动）/ campus（校园网），也可以直接用 domain 指定后缀。",
+    "username": "你的学号或手机号",
+    "password": "你的密码",
+    "operator": "telecom",
+    "domain": ""
+  },
+
+  "guard": {
+    "_help": "守护节奏。interval_sec=在线时多少秒查一次；interval_offline_sec=掉线后多少秒重试一次；min/max_attempt_gap_sec=登录失败后的退避区间。",
+    "interval_sec": 30,
+    "interval_offline_sec": 10,
+    "min_attempt_gap_sec": 60,
+    "max_attempt_gap_sec": 900,
+    "ext_fail_threshold": 3
+  },
+
+  "probe": {
+    "_help": "外网探测默认关闭：本程序按纯离线设计，只信校园网门户，断网时也能正确判断。想额外识别“门户说在线但其实没网”的假在线状态，才把 enabled 改成 true（此时需要能访问下面这些地址）。",
+    "enabled": false,
+    "ext_fail_threshold": 3,
+    "timeout_sec": 6,
+    "urls": [
+      "http://www.msftconnecttest.com/connecttest.txt",
+      "http://connect.rom.miui.com/generate_204"
+    ]
+  },
+
+  "logging": {
+    "_help": "日志会按 max_bytes 自动轮转，保留 backups 份。",
+    "max_bytes": 2097152,
+    "backups": 3,
+    "level": "INFO"
+  }
+}

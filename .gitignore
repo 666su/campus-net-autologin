@@ -1,0 +1,29 @@
+# ---- 你自己的凭据，绝对不要提交 ----
+config.json
+config.local.json
+
+# ---- 运行时产物 ----
+campus_net.log
+campus_net.log.*
+run/
+start_watcher.vbs
+*.pid
+*.lock
+*.flag
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

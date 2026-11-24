@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  macOS 后台守护。把 __REPO__ 换成本仓库绝对路径，然后：
+    cp deploy/com.campusnet.autologin.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.campusnet.autologin.plist
+  查看日志：tail -f __REPO__/campus_net.log
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.campusnet.autologin</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>__REPO__/campus_net.py</string>
+        <string>watch</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>__REPO__</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>
